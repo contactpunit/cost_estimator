@@ -18,6 +18,9 @@ class TestCostEstimator(unittest.TestCase):
         # Page title "Cost Estimator"
         self.assertIn("Cost Estimator", self.browser.title)
 
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('Cost Estimator', header_text)
+
         # User sees From input box to enter travel from
 
         # User sees Destination input box to enter travel to
