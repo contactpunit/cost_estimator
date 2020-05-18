@@ -4,7 +4,7 @@ from django.shortcuts import render
 import requests
 import configparser
 import os
-import sys
+from geopy.geocoders import Nominatim
 
 
 #
@@ -26,12 +26,13 @@ class AirportTracker:
         self.rapidapi_host_value = airport_config.get('Airport', 'rapidapi_host_value')
         self.rapidapi_key_name = airport_config.get('Airport', 'rapidapi_key_name')
         self.rapidapi_key_value = airport_config.get('Airport', 'rapidapi_key_value')
+        self.radius = airport_config.get('Airport', 'radius')
         self.headers = {self.rapidapi_host_name: self.rapidapi_host_value,
                         self.rapidapi_key_name: self.rapidapi_key_value, 'Content-Type': 'application/json'}
 
     def get_airport_by_name(self):
         self.place_type = 'name'
-        self._set_url_params()
+        self._set_url_params(place_type=self.place_type)
         response = self.http_request()
         if response:
             for record in response:
@@ -39,26 +40,34 @@ class AirportTracker:
                     return record
             raise ValueError('Invalid place. Please enter correct value')
         if not response:
-            self.get_airports_by_radius(radius=200, longitude=)
+            lat, long = self.get_lat_long()
+            # self.get_airports_by_radius(lat=lat, long=long, radius=self.radius)
         return response
+
+    def get_lat_long(self):
+        geolocator = Nominatim(user_agent="Firefox")
+        location = geolocator.geocode(self.place)
+        if location:
+            latitude, longitude = (location.longitude, location.longitude)
+            return latitude, longitude
+        else:
+            raise PlaceNotFoundException('Couldnot locate lat long for the place')
 
     def get_airport_by_code(self):
         self.place_type = 'code'
-        self._set_url_params()
+        self._set_url_params(place_type=self.place_type)
         response = self.http_request()
         return response
 
-    def get_nearest_airports(self):
-        pass
+    def get_airports_by_radius(self, lat=None, long=None, radius=0):
+        if lat is not None and long is not None:
+            self.url = self.airport_by_radius_url
 
-    def get_airports_by_radius(self):
-        pass
-
-    def _set_url_params(self):
-        if self.place_type == 'code':
+    def _set_url_params(self, place_type=None, lat=None, long=None):
+        if place_type == 'code':
             self.url = self.airport_by_code_url
             self.params = {"code": self.place}
-        elif self.place_type == 'name':
+        elif place_type == 'name':
             self.url = self.airport_by_name_url
             self.params = {"text": self.place}
 
@@ -79,6 +88,10 @@ class AirportTracker:
             self.get_airport_by_name()
         else:
             raise ValueError('Invalid place name. Please enter either code or full name')
+
+
+class PlaceNotFoundException(Exception):
+    pass
 
 
 a = AirportTracker(place='latur', country_code='IN')
