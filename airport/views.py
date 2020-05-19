@@ -9,6 +9,8 @@ from geopy.geocoders import Nominatim
 
 # # Create your views here.
 class AirportTracker:
+    """Class to return valid airport with latitude and longitude"""
+
     def __init__(self, place, country_code):
         self.place = place
         self.country_code = country_code
@@ -30,6 +32,9 @@ class AirportTracker:
                         self.rapidapi_key_name: self.rapidapi_key_value, 'Content-Type': 'application/json'}
 
     def get_airport_by_name(self):
+        """Return airport if name is given instead of airport code.
+        If no airport found it looks for nearest airport in radius of x kms"""
+
         self.place_type = 'name'
         self._set_url_params(place_type=self.place_type)
         response = self.http_request()
@@ -45,6 +50,8 @@ class AirportTracker:
 
     @staticmethod
     def get_lat_long(place=None):
+        """ Return latitude longitude for a place based on name """
+
         geolocator = Nominatim(user_agent="Firefox")
         location = geolocator.geocode(place)
         if location:
@@ -54,12 +61,16 @@ class AirportTracker:
             raise PlaceNotFoundException('Could not locate lat long for the place')
 
     def get_airport_by_code(self):
+        """Returns airport based on airport code"""
+
         self.place_type = 'code'
         self._set_url_params(place_type=self.place_type)
         response = self.http_request()
         return response
 
     def get_airports_by_radius(self, lat=None, long=None, radius=0):
+        """Returns airports in radius of <radius> km. Input required latitude and longitude"""
+
         if lat is not None and long is not None:
             self._set_url_params(lat=lat, long=long, radius=radius)
             response = self.http_request()
@@ -78,6 +89,8 @@ class AirportTracker:
                 self.params = {"text": self.place}
 
     def http_request(self):
+        """Run a http request and return response"""
+
         try:
             response = requests.request("GET", self.url, headers=self.headers, params=self.params)
             if response.status_code == 200:
