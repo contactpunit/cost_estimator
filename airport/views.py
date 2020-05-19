@@ -7,12 +7,11 @@ import os
 from geopy.geocoders import Nominatim
 
 
-#
 # # Create your views here.
 class AirportTracker:
-    def __init__(self, **kwargs):
-        self.place = kwargs.get('place', None)
-        self.country_code = kwargs.get('country_code', None)
+    def __init__(self, place, country_code):
+        self.place = place
+        self.country_code = country_code
         self.place_type = None
         self.url = None
         self.params = None
@@ -36,22 +35,23 @@ class AirportTracker:
         response = self.http_request()
         if response:
             for record in response:
-                if record['name'] == self.place and record['countryCode'] == self.country_code:
+                if record['city'].lower() == self.place.lower() and record['countryCode'] == self.country_code:
                     return record
             raise ValueError('Invalid place. Please enter correct value')
-        if not response:
-            lat, long = self.get_lat_long()
-            # self.get_airports_by_radius(lat=lat, long=long, radius=self.radius)
-        return response
+        else:
+            lat, long = self.get_lat_long(place=self.place)
+            response = self.get_airports_by_radius(lat=lat, long=long, radius=self.radius)
+            return response
 
-    def get_lat_long(self):
+    @staticmethod
+    def get_lat_long(place=None):
         geolocator = Nominatim(user_agent="Firefox")
-        location = geolocator.geocode(self.place)
+        location = geolocator.geocode(place)
         if location:
-            latitude, longitude = (location.longitude, location.longitude)
+            latitude, longitude = (location.latitude, location.longitude)
             return latitude, longitude
         else:
-            raise PlaceNotFoundException('Couldnot locate lat long for the place')
+            raise PlaceNotFoundException('Could not locate lat long for the place')
 
     def get_airport_by_code(self):
         self.place_type = 'code'
@@ -61,15 +61,21 @@ class AirportTracker:
 
     def get_airports_by_radius(self, lat=None, long=None, radius=0):
         if lat is not None and long is not None:
-            self.url = self.airport_by_radius_url
+            self._set_url_params(lat=lat, long=long, radius=radius)
+            response = self.http_request()
+            return response
 
-    def _set_url_params(self, place_type=None, lat=None, long=None):
-        if place_type == 'code':
-            self.url = self.airport_by_code_url
-            self.params = {"code": self.place}
-        elif place_type == 'name':
-            self.url = self.airport_by_name_url
-            self.params = {"text": self.place}
+    def _set_url_params(self, place_type=None, lat=None, long=None, radius=None):
+        if lat is not None and long is not None and radius is not None:
+            self.url = self.airport_by_radius_url
+            self.params = {"radius": radius, "lng": long, "lat": lat}
+        else:
+            if place_type == 'code':
+                self.url = self.airport_by_code_url
+                self.params = {"code": self.place}
+            elif place_type == 'name':
+                self.url = self.airport_by_name_url
+                self.params = {"text": self.place}
 
     def http_request(self):
         try:
@@ -83,9 +89,9 @@ class AirportTracker:
 
     def __call__(self, *args, **kwargs):
         if len(self.place) == 3:
-            self.get_airport_by_code()
+            return self.get_airport_by_code()
         elif len(self.place) > 3:
-            self.get_airport_by_name()
+            return self.get_airport_by_name()
         else:
             raise ValueError('Invalid place name. Please enter either code or full name')
 
@@ -93,6 +99,5 @@ class AirportTracker:
 class PlaceNotFoundException(Exception):
     pass
 
-
-a = AirportTracker(place='latur', country_code='IN')
-print(a())
+# a = AirportTracker(place='latur', country_code='IN')
+# print(a())
