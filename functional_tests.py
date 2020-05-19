@@ -1,4 +1,5 @@
 from selenium import webdriver
+import time
 import unittest
 
 
@@ -16,13 +17,21 @@ class TestCostEstimator(unittest.TestCase):
 
         # Page title "Cost Estimator"
         self.assertIn("Cost Estimator", self.browser.title)
-        self.fail("Finish test")
+
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('Cost Estimator', header_text)
 
         # User sees From input box to enter travel from
+        inputbox_source = self.browser.find_element_by_id('source')
+        self.assertEqual(inputbox_source.get_attribute("name"), 'source')
 
-        # User sees Destination input box to enter travel to
+        # User sees From input box to enter travel To
+        inputbox_dest = self.browser.find_element_by_id('destination')
+        self.assertEqual(inputbox_dest.get_attribute("name"), 'destination')
 
         # User ses submit button to click on search for itineraries
+
+        # self.fail("Finish test")
 
 
 if __name__ == '__main__':
