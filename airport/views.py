@@ -41,12 +41,12 @@ class AirportTracker:
         if response:
             for record in response:
                 if record['city'].lower() == self.place.lower() and record['countryCode'] == self.country_code:
-                    return record
+                    return {'records': response}
             raise ValueError('Invalid place. Please enter correct value')
         else:
             lat, long = self.get_lat_long(place=self.place)
             response = self.get_airports_by_radius(lat=lat, long=long, radius=self.radius)
-            return response
+            return {'records': response, 'nearest': True}
 
     @staticmethod
     def get_lat_long(place=None):
@@ -66,7 +66,7 @@ class AirportTracker:
         self.place_type = 'code'
         self._set_url_params(place_type=self.place_type)
         response = self.http_request()
-        return response
+        return {'records': response}
 
     def get_airports_by_radius(self, lat=None, long=None, radius=0):
         """Returns airports in radius of <radius> km. Input required latitude and longitude"""
