@@ -1,5 +1,6 @@
 import pytest
-from airport.views import AirportTracker, PlaceNotFoundException
+from utilities.airport_utils import AirportTracker
+from utilities.travelExceptions import *
 
 
 def test_no_argument_raise_keyerror():
@@ -26,7 +27,7 @@ def test_get_airport_by_code_url_used():
 
 def test_for_invalid_place_get_lan_long_raise_exception():
     a1 = AirportTracker('invalid', 'IN')
-    with pytest.raises(PlaceNotFoundException):
+    with pytest.raises(LocationNotFoundException):
         a1.get_lat_long(place='invalidvalue')
 
 
@@ -44,11 +45,9 @@ def test_get_lat_long_values(place, country):
 ])
 def test_get_airport_by_code_valid_airport_listed_in_results(code, country):
     a1 = AirportTracker(code, country)
-    print(a1.get_airport_by_code())
     assert a1.get_airport_by_code()['records'][0]['code'] == code
 
 
 def test_get_airport_by_radius_for_city_without_airport():
     a1 = AirportTracker('latur', 'IN')
-    print(a1.get_airport_by_name())
     assert a1.get_airport_by_name()['records'][0]['city'] == 'Nanded'
