@@ -8,6 +8,7 @@ def return_flight_object():
         return FlightTracker(source=kwargs['source'], country=kwargs['country'], travel_date='2020-06-01',
                              destination=kwargs['destination'],
                              num_travellers=2)
+
     return flight_deco
 
 
@@ -45,13 +46,4 @@ def test_get_flight_from_source_to_destination():
     f = FlightTracker(source=source, destination=destination, country=country, travel_date=travel_date)
     r = f.parse_results(f.get_flights())
     assert r.__class__.__name__ == 'dict'
-    assert 'CarrierName' in ['MinPrice', 'CarrierName', 'direct']
-
-#
-#
-# def test_get_price_of_flight():
-#     pass
-#
-#
-# def get_flights_from_nearest_airport():
-#     pass
+    assert 'CarrierName' in r.keys()
