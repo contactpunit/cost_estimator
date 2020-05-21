@@ -1,4 +1,4 @@
-class NoFlightsAvailable(Exception):
+class NoFlightsAvailableException(Exception):
     pass
 
 
@@ -7,4 +7,8 @@ class InvalidCityException(Exception):
 
 
 class LocationNotFoundException(Exception):
+    pass
+
+
+class InvalidCountryException(Exception):
     pass

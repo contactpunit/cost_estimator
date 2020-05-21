@@ -14,7 +14,7 @@ class Travel:
         if self.find_country_code():
             self.country = self.find_country_code()
         else:
-            raise LookupError('Country not valid. Please enter either country code or correct country name')
+            raise InvalidCountryException('Country not valid. Please enter either country code or correct country name')
 
     def find_country_code(self):
         if len(self.country) != 2:
@@ -44,8 +44,10 @@ class Travel:
                                       travel_date=self.travel_date)
                     results = f.get_flights()
                     if results:
-                        return f.parse_results(results)
-        raise NoFlightsAvailable('No Flights are available')
+                        result = f.parse_results(results)
+                        result['deviation'] = deviation
+                        return result
+        raise NoFlightsAvailableException('No Flights are available')
 
 # c = Travel(source='latur', destination='delhi', country='india', travel_date='2020-06-01', num_passengers=2)
 # print(c.find_itineraries())
