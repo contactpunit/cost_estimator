@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homepage',
     'airport',
-    'manageflights'
+    'flights'
 ]
 
 MIDDLEWARE = [
