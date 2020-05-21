@@ -14,15 +14,18 @@ class FlightTracker(ConfigReaderMixin):
             self.read_config()
         self.headers = {self.rapidapi_host_name: self.rapidapi_flight_host_value,
                         self.rapidapi_key_name: self.rapidapi_key_value, 'Content-Type': 'application/json'}
+        self.url = self._prepare_url(source=self.source, destination=self.destination, country=self.country,
+                                     travel_date=self.travel_date)
+        self.params = {}
 
     def __repr__(self):
         return f'({self.__class__.__name__}) from {self.source} to {self.destination}'
 
+    def _prepare_url(self, **kwargs):
+        return self.get_quotes_url.format(source=kwargs['source'], destination=kwargs['destination'],
+                                          country=kwargs['country'], travel_date=kwargs['travel_date'])
+
     def get_flights(self):
-        baseurl = self.get_quotes_url
-        self.url = str(baseurl.format(source=self.source, destination=self.destination, country=self.country,
-                                      travel_date=self.travel_date))
-        self.params = {}
         response = http_request(url=self.url, params=self.params, headers=self.headers)
         return response
 
@@ -35,7 +38,6 @@ class FlightTracker(ConfigReaderMixin):
                 if carriers['CarrierId'] == carrier:
                     return {'MinPrice': price, 'CarrierName': carriers['Name'], 'direct': direct}
 
-
-f = FlightTracker(source='pnq', country='IN', destination='del', travel_date='2020-06-01', num_travellers=2)
-r = f.get_flights()
-print(f.parse_results(r))
+# f = FlightTracker(source='pnq', country='IN', destination='del', travel_date='2020-06-01', num_travellers=2)
+# r = f.get_flights()
+# print(f.parse_results(r))
