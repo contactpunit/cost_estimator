@@ -34,7 +34,6 @@ class Travel:
         except LookupError:
             return None
 
-
     def find_airport(self, place):
         airport = AirportTracker(place=place, country_code=self.country)
         return airport()
@@ -54,6 +53,3 @@ class Travel:
                         result['deviation'] = deviation
                         return result
         raise NoFlightsAvailableException('No Flights are available')
-
-# c = Travel(source='latur', destination='delhi', country='india', travel_date='2020-06-01', num_passengers=2)
-# print(c.find_itineraries())
