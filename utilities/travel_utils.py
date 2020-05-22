@@ -8,26 +8,32 @@ class Travel:
     def __init__(self, source, destination, country, travel_date, num_passengers):
         self.source = source
         self.destination = destination
-        self.country = country
+        # self.country = country
         self.travel_date = travel_date
         self.num_passengers = int(num_passengers)
-        if self.find_country_code():
-            self.country = self.find_country_code()
+        if self.find_country_code(country):
+            self.country = self.find_country_code(country)
         else:
             raise InvalidCountryException('Country not valid. Please enter either country code or correct country name')
 
-    def find_country_code(self):
-        if len(self.country) != 2:
-            try:
-                country = pycountry.countries.search_fuzzy(self.country)
-                if len(country) > 1:
-                    for entry in country:
-                        if entry.name.lower() == self.country.lower():
+    @staticmethod
+    def find_country_code(country):
+        try:
+            if len(country) != 2:
+                result = pycountry.countries.search_fuzzy(country)
+                if len(result) > 1:
+                    for entry in result:
+                        if entry.name.lower() == country.lower() or entry.official_name.lower() == country.lower():
                             return entry.alpha_2
-                        else:
-                            return country.alpha_2
-            except LookupError:
-                return None
+                else:
+                    return result[0].alpha_2
+            elif len(country) == 2:
+                result = pycountry.countries.search_fuzzy(country)
+                if result[0].alpha_2.lower() == country.lower():
+                    return result[0].alpha_2
+        except LookupError:
+            return None
+
 
     def find_airport(self, place):
         airport = AirportTracker(place=place, country_code=self.country)
