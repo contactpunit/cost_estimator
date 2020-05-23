@@ -16,7 +16,7 @@ def test_find_country_code(country_name, code):
 @pytest.mark.parametrize('source, destination, country, travel_date', [
     ('PNQ', 'DEL', "INDIA", '2020-06-01')
 ])
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_find_itineraries(source, destination, country, travel_date):
     t = travel_utils.Travel(source=source, destination=destination, country=country, travel_date=travel_date,
                             num_passengers=2)

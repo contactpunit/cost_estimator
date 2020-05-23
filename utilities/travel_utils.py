@@ -8,7 +8,6 @@ class Travel:
     def __init__(self, source, destination, country, travel_date, num_passengers):
         self.source = source
         self.destination = destination
-        # self.country = country
         self.travel_date = travel_date
         self.num_passengers = int(num_passengers)
         if self.find_country_code(country):
@@ -51,5 +50,7 @@ class Travel:
                     if results:
                         result = f.parse_results(results)
                         result['deviation'] = deviation
+                        result.update({'source': self.source, 'destination': self.destination, 'country': self.country,
+                                       'travel_date': 'travel_date'})
                         return result
         raise NoFlightsAvailableException('No Flights are available')

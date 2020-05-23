@@ -4,12 +4,43 @@
 </head>
 <body>
 <h1>Cost Estimator</h1>
-<form>
-  <label for="source">From:</label><br>
-  <input type="text" id="source" name="source"><br><br>
-    <label for="destination">To:</label><br>
-  <input type="text" id="destination" name="destination"><br><br>
-  <input type="submit" value="Submit">
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <td>
+        <div>
+            {{ field.errors }}
+            <p>{{ field.label_tag }}</p>
+            {{ field }}
+            {% if field.help_text %}
+            <p>{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+    </td>
+    {% endfor %}
+  <br>
+
+    <input type="submit" value="Submit"/>
+    {% if data %}
+
+    <table border="1">
+    <thead>
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>Country</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>{{ data }}</td>
+        </tr>
+    </tbody>
+  </table>
+    {% endif %}
+
 </form>
 </body>
 </html>
+
