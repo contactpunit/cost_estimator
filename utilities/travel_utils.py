@@ -51,6 +51,6 @@ class Travel:
                         result = f.parse_results(results)
                         result['deviation'] = deviation
                         result.update({'source': self.source, 'destination': self.destination, 'country': self.country,
-                                       'travel_date': 'travel_date'})
+                                       'travel_date': self.travel_date})
                         return result
         raise NoFlightsAvailableException('No Flights are available')

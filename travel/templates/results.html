@@ -6,20 +6,32 @@
 <body>
 <!--<div>-->
 
-    <table border="1">
+<table border="1">
     <thead>
-        <tr>
-          <th>From</th>
-          <th>To</th>
-          <th>Country</th>
-        </tr>
+    <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Country</th>
+        <th>Travel Date</th>
+        <th>Direct Flight</th>
+        <th>Carrier Name</th>
+        <th>Price</th>
+
+    </tr>
     </thead>
     <tbody>
-        <!-- for class based views rename this queryset to quote_list -->
-        <tr>
-            <td>{{ data }}</td>
-        </tr>
+    <!-- for class based views rename this queryset to quote_list -->
+    <tr>
+        <td>{{ data.source }}</td>
+        <td>{{ data.destination }}</td>
+        <td>{{ data.country }}</td>
+        <td>{{ data.travel_date }}</td>
+        <td>{{ data.direct }}</td>
+        <td>{{ data.CarrierName }}</td>
+        <td>{{ data.MinPrice }}</td>
+
+    </tr>
     </tbody>
-  </table>
+</table>
 </body>
 </html>
