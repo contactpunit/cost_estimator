@@ -54,7 +54,7 @@ ROOT_URLCONF = 'cost_estimator_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'cost_estimator_project/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
