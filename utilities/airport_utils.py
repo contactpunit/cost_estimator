@@ -1,5 +1,6 @@
 from .utils import ConfigReaderMixin, http_request
 from geopy.geocoders import Nominatim
+from .travelExceptions import *
 
 
 class AirportTracker(ConfigReaderMixin):
@@ -45,7 +46,7 @@ class AirportTracker(ConfigReaderMixin):
             latitude, longitude = (location.latitude, location.longitude)
             return latitude, longitude
         else:
-            raise PlaceNotFoundException('Could not locate lat long for the place')
+            raise LocationNotFoundException('Could not locate lat long for the place')
 
     def get_airport_by_code(self):
         """Returns airport based on airport code"""
@@ -81,8 +82,4 @@ class AirportTracker(ConfigReaderMixin):
         elif len(self.place) > 3:
             return self.get_airport_by_name()
         else:
-            raise ValueError('Invalid place name. Please enter either code or full name')
-
-
-class PlaceNotFoundException(Exception):
-    pass
+            raise InvalidCityException('Invalid place name. Please enter either code or full name')
