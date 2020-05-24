@@ -12,10 +12,11 @@ class AirportTracker(ConfigReaderMixin):
         self.place_type = None
         self.url = None
         self.params = None
-        try:
-            getattr(self, 'get_quotes_url')
-        except AttributeError:
-            self.read_config()
+        # try:
+        #     getattr(self, 'get_quotes_url')
+        #     print('I am called')
+        # except AttributeError:
+        #     self.read_config()
         self.headers = {self.rapidapi_host_name: self.rapidapi_airport_host_value,
                         self.rapidapi_key_name: self.rapidapi_key_value, 'Content-Type': 'application/json'}
 
