@@ -8,10 +8,6 @@ class FlightTracker(ConfigReaderMixin):
         self.country = country
         self.num_travellers = num_travellers
         self.travel_date = travel_date
-        try:
-            getattr(self, 'get_quotes_url')
-        except AttributeError:
-            self.read_config()
         self.headers = {self.rapidapi_host_name: self.rapidapi_flight_host_value,
                         self.rapidapi_key_name: self.rapidapi_key_value, 'Content-Type': 'application/json'}
         self.url = self._prepare_url(source=self.source, destination=self.destination, country=self.country,
