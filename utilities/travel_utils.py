@@ -50,7 +50,15 @@ class Travel:
                     if results:
                         result = f.parse_results(results)
                         result['deviation'] = deviation
+                        total_price = self._total_price_all_passengers(result['MinPrice'])
                         result.update({'source': self.source, 'destination': self.destination, 'country': self.country,
-                                       'travel_date': self.travel_date})
+                                       'num_passengers': self.num_passengers, 'travel_date': self.travel_date,
+                                       'total_price': total_price})
                         return result
         raise NoFlightsAvailableException('No Flights are available')
+
+    def _total_price_all_passengers(self, price):
+        return self.num_passengers * price
+
+# f = Travel(source='pnq', country='IN', destination='del', travel_date='2020-06-01', num_passengers=2)
+# r = f.find_itineraries()

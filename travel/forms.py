@@ -6,4 +6,4 @@ from .models import Travel
 class TravelForm(ModelForm):
     class Meta:
         model = Travel
-        fields = ['source', 'destination', 'country', 'travel_date']
+        fields = ['source', 'destination', 'country', 'travel_date', 'num_passengers']
