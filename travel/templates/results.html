@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Results</title>
+</head>
+<body>
+<!--<div>-->
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Country</th>
+        <th>Travel Date</th>
+        <th>Direct Flight</th>
+        <th>Carrier Name</th>
+        <th>Price per Passenger</th>
+        <th>Passengers</th>
+        <th>Total Price</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <!-- for class based views rename this queryset to quote_list -->
+    <tr>
+        <td>{{ data.source }}</td>
+        <td>{{ data.destination }}</td>
+        <td>{{ data.country }}</td>
+        <td>{{ data.travel_date }}</td>
+        <td>{{ data.direct }}</td>
+        <td>{{ data.CarrierName }}</td>
+        <td>{{ data.MinPrice }}</td>
+        <td>{{ data.num_passengers }}</td>
+        <td>{{ data.total_price }}</td>
+
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
