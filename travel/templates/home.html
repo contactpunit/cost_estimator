@@ -18,27 +18,9 @@
         </div>
     </td>
     {% endfor %}
-  <br>
+    <br>
 
     <input type="submit" value="Submit"/>
-<!--    {% if data %}-->
-
-<!--    <table border="1">-->
-<!--    <thead>-->
-<!--        <tr>-->
-<!--          <th>From</th>-->
-<!--          <th>To</th>-->
-<!--          <th>Country</th>-->
-<!--        </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-
-<!--        <tr>-->
-<!--            <td>{{ data }}</td>-->
-<!--        </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
-<!--    {% endif %}-->
 
 
 <table>
@@ -46,6 +28,82 @@
   <!-- TODO: make a result table here -->
 {% endif %}
 </form>
+
+
+<table border="1">
+    {% if Travel %}
+    <thead>
+    <tr>
+    <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Country</th>
+        <th>Travel Date</th>
+        <th>Direct Flight</th>
+        <th>Carrier Name</th>
+        <th>Price per Passenger</th>
+        <th>Passengers</th>
+        <th>Total Price</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <!-- for class based views rename this queryset to quote_list -->
+    <tr>
+        <td>{{ Travel.source }}</td>
+        <td>{{ Travel.destination }}</td>
+        <td>{{ Travel.country }}</td>
+        <td>{{ Travel.travel_date }}</td>
+        <td>{{ Travel.direct }}</td>
+        <td>{{ Travel.CarrierName }}</td>
+        <td>{{ Travel.MinPrice }}</td>
+        <td>{{ Travel.num_passengers }}</td>
+        <td>{{ Travel.total_price }}</td>
+
+
+    </tr>
+    </tbody>
+</table>
+{% endif %}
+<br>
+<br>
+<table border="1">
+    {% if Weather %}
+    <thead>
+    <tr>
+    <tr>
+        <th>Longitude</th>
+        <th>Latitude</th>
+        <th>Clouds</th>
+        <th>Min Temprature</th>
+        <th>Max Temprature</th>
+        <th>Pressure</th>
+        <th>Humidity</th>
+        <th>Wind Speed</th>
+        <th>SunRise</th>
+        <th>SunSet</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ Weather.coord.lon }}</td>
+        <td>{{ Weather.coord.lat }}</td>
+        <td>{{ Weather.weather.0.description }}</td>
+        <td>{{ Weather.main.temp_min }}</td>
+        <td>{{ Weather.main.temp_max }}</td>
+        <td>{{ Weather.main.pressure }}</td>
+        <td>{{ Weather.main.humidity }}</td>
+        <td>{{ Weather.wind.speed }}</td>
+        <td>{{ Weather.sys.sunrise }}</td>
+        <td>{{ Weather.sys.sunset }}</td>
+
+
+    </tr>
+    </tbody>
+</table>
+{% endif %}
+
 </body>
 </html>
 
