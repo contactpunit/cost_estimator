@@ -1,11 +1,10 @@
 from django.db import models
 
-# Create your models here.
 
 class Travel(models.Model):
-    source = models.TextField()
-    destination = models.TextField()
-    country = models.TextField()
+    source = models.CharField(max_length=60)
+    destination = models.CharField(max_length=60)
+    country = models.CharField(max_length=60)
     travel_date = models.DateField()
     num_passengers = models.PositiveIntegerField(default=0)
 

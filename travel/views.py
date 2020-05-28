@@ -18,5 +18,7 @@ def travel_detail(request):
                              num_passengers=num_passengers)
         for k, v in results.items():
             data[k.__name__] = v
-        return render(request, 'results.html', {'data': data})
-    return render(request, 'home.html', {'form': form})
+        # return render(request, 'results.html', {'data': data})
+    return render(request, 'home.html', {'form': form,
+                                         'Travel': data.get('Travel', None),
+                                         'Weather': data.get('Weather', None)})
