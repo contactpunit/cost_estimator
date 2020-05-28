@@ -37,7 +37,7 @@ class Travel:
         airport = AirportTracker(place=place, country_code=self.country)
         return airport()
 
-    def find_itineraries(self):
+    def run(self):
         source_airport = self.find_airport(place=self.source)
         dest_airport = self.find_airport(place=self.destination)
         deviation = any([source_airport.get('nearest', None), dest_airport.get('nearest', None)])
