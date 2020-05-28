@@ -56,6 +56,22 @@ class ConfigReaderMixin:
     def rapidapi_flight_host_value(self):
         return self.config_reader.get('Flight', 'rapidapi_flight_host_value')
 
+    @property
+    def weather_url(self):
+        return self.config_reader.get('Weather', 'weather_url')
+
+    @property
+    def weather_api_key(self):
+        return self.config_reader.get('Weather', 'weather_api_key')
+
+    @property
+    def weather_api_value(self):
+        return self.config_reader.get('Weather', 'weather_api_value')
+
+    @property
+    def units(self):
+        return self.config_reader.get('Weather', 'units')
+
 
 def http_request(url=None, headers=None, params=None):
     """Run a http request and return response"""
