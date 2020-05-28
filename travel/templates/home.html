@@ -4,7 +4,7 @@
 </head>
 <body>
 <h1>Cost Estimator</h1>
-<form method="post">
+<form method="post" action="/results">
     {% csrf_token %}
     {% for field in form %}
     <td>
@@ -22,6 +22,11 @@
 
     <input type="submit" value="Submit"/>
 
+
+<table>
+{% if data %}
+  <!-- TODO: make a result table here -->
+{% endif %}
 </form>
 
 
