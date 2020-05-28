@@ -2,9 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block header_title %}{% endblock %}</title>
 </head>
 <body>
+<h1>{% block header_head %}{% endblock %}</h1>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <td>
+        <div>
+            {{ field.errors }}
+            <p>{{ field.label_tag }}</p>
+            {{ field }}
+            {% if field.help_text %}
+            <p>{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+    </td>
+    {% endfor %}
+    <br>
+
+    <input type="submit" value="Submit"/>
+</form>
+
+{% block table %}
+{% endblock %}
 
 </body>
 </html>
