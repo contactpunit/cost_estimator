@@ -20,3 +20,4 @@ def travel_detail(request):
             data[k.__name__] = v
         return render(request, 'results.html', {'data': data})
     return render(request, 'home.html', {'form': form})
+  
