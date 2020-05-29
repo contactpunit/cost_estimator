@@ -5,38 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block header_title %}{% endblock %}</title>
-    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/travel.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md=-offset-3">
-            <!--            <div class="text-center">-->
-            <div>
-                <h1>{% block header_head %}{% endblock %}</h1>
+    <table border="0">
+        <td bgcolor="#D3D3D3"><h1>{% block header_head %}{% endblock %}</h1></td>
+    </table>
+
                 <form method="post">
+                <table>
                     {% csrf_token %}
                     {% for field in form %}
-                    <td>
-                        <div>
+                    <td style="font-weight:bold">
                             {{ field.errors }}
-                            <p>{{ field.label_tag }}</p>
+                            <p>{{ field.label_tag }}
                             {{ field }}
                             {% if field.help_text %}
-                            <p>{{ field.help_text|safe }}</p>
-                            {% endif %}
-                        </div>
+                            {{ field.help_text|safe }}</p>
+                        {% endif %}
                     </td>
                     {% endfor %}
-                    <br>
-
-                    <input type="submit" value="Submit"/>
-                    <br>
+                </table>
+                    <table><td align="center"><input type="submit" align="center" value="Submit"/></td></table>
                     <br>
                 </form>
-            </div>
-        </div>
-    </div>
+
 
     <div class="row">
         <div class="col-md-6 col-md=-offset-3">
@@ -44,6 +37,6 @@
             {% endblock %}
         </div>
     </div>
-</div>
+
 </body>
 </html>
