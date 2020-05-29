@@ -1,7 +1,8 @@
 from .travel_utils import Travel
 from .weather_utils import Weather
+from .covid_utils import Covid
 
-REGISTERED = [Travel, Weather]
+REGISTERED = [Travel, Weather, Covid]
 
 
 class Scheduler:

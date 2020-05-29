@@ -2,9 +2,9 @@ from django.db import models
 
 
 class Travel(models.Model):
+    country = models.CharField(max_length=60)
     source = models.CharField(max_length=60)
     destination = models.CharField(max_length=60)
-    country = models.CharField(max_length=60)
     travel_date = models.DateField()
     num_passengers = models.PositiveIntegerField(default=0)
 

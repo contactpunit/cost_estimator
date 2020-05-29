@@ -21,4 +21,5 @@ def travel_detail(request):
         # return render(request, 'results.html', {'data': data})
     return render(request, 'home.html', {'form': form,
                                          'Travel': data.get('Travel', None),
-                                         'Weather': data.get('Weather', None)})
+                                         'Weather': data.get('Weather', None),
+                                         'Covid': data.get('Covid', None)})
