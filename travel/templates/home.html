@@ -58,7 +58,6 @@
         <th>Wind Speed</th>
         <th>SunRise</th>
         <th>SunSet</th>
-
     </tr>
     </thead>
     <tbody>
@@ -73,7 +72,36 @@
         <td>{{ Weather.wind.speed }}</td>
         <td>{{ Weather.sys.sunrise }}</td>
         <td>{{ Weather.sys.sunset }}</td>
+    </tr>
+    </tbody>
+    {% endif %}
+</table>
+<br>
+<br>
+<table border="1">
+    {% if Covid %}
+    <thead>
+    <tr>
+    <tr>
+        <th>Country</th>
+        <th>New Cases</th>
+        <th>Active Cases</th>
+        <th>Critical</th>
+        <th>Recovered</th>
+        <th>Total Cases</th>
+        <th>Total Deaths</th>
 
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ Covid.response.0.country }}</td>
+        <td>{{ Covid.response.0.cases.new }}</td>
+        <td>{{ Covid.response.0.cases.active }}</td>
+        <td>{{ Covid.response.0.cases.critical }}</td>
+        <td>{{ Covid.response.0.cases.recovered }}</td>
+        <td>{{ Covid.response.0.cases.total }}</td>
+        <td>{{ Covid.response.0.deaths.total }}</td>
 
     </tr>
     </tbody>

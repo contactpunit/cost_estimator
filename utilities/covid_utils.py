@@ -13,3 +13,11 @@ class Covid(ConfigReaderMixin):
         url = self.covid_url
         response = http_request(url=url, params=self.params, headers=self.headers)
         return response
+
+    def run(self):
+        result = self.get_covid_details()
+        return result
+
+
+# c = Covid(source='pune', country='india', destination='delhi', travel_date='2020-06-01', num_passengers=2)
+# print(c.run())
