@@ -72,6 +72,14 @@ class ConfigReaderMixin:
     def units(self):
         return self.config_reader.get('Weather', 'units')
 
+    @property
+    def covid_url(self):
+        return self.config_reader.get('Covid19', 'covid_url')
+
+    @property
+    def rapidapi_covid19_host_value(self):
+        return self.config_reader.get('Covid19', 'rapidapi_covid19_host_value')
+
 
 def http_request(url=None, headers=None, params=None):
     """Run a http request and return response"""
