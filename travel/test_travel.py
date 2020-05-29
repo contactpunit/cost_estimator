@@ -20,4 +20,4 @@ def test_find_country_code(country_name, code):
 def test_find_itineraries(source, destination, country, travel_date):
     t = travel_utils.Travel(source=source, destination=destination, country=country, travel_date=travel_date,
                             num_passengers=2)
-    assert 'CarrierName' in t.find_itineraries()
+    assert 'CarrierName' in t.run()
