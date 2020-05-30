@@ -8,34 +8,36 @@
     <link href="/static/bootstrap/css/travel.css" rel="stylesheet">
 </head>
 <body>
-    <table valign="middle" style="background-image:url(/static/bootstrap/css/images/title.jpg);
+<table valign="middle" style="background-image:url(/static/bootstrap/css/images/title.jpg);
     background-repeat:no-repeat; background-position: center; background-color: white;">
-        <td> <br><br><br><br></td>
-    </table>
+    <td><br><br><br><br></td>
+</table>
 
-                <form method="post">
-                <table>
-                    {% csrf_token %}
-                    {% for field in form %}
-                    <td>
-                            {{ field.errors }}
-                            <p>{{ field.label_tag }}
-                            {{ field }}
-                                {% if field.help_text %}
-                            {{ field.help_text|safe }}</p>
-                        {% endif %}
-                    </td>
-                    {% endfor %}
-                    <td align="center"><input type="submit" align="left" value="Submit"/></td></table>
-                </form>
+<form method="post">
+    <table>
+        {% csrf_token %}
+        {% for field in form %}
+        <td>
+            {{ field.errors }}
+            <p>{{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                {{ field.help_text|safe }}</p>
+            {% endif %}
+        </td>
+        {% endfor %}
+        <td align="center"><input type="submit" align="left" value="Submit"/></td>
+    </table>
+</form>
 <br>
 
-    <div class="row">
-        <div class="col-md-6 col-md=-offset-3">
-            {% block table %}
-            {% endblock %}
-        </div>
+<div class="row">
+    <div class="col-md-6 col-md=-offset-3">
+        {% block table %}
+        {% endblock %}
     </div>
+</div>
 
 </body>
+
 </html>

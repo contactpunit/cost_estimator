@@ -36,59 +36,66 @@
 <br>
 <br>
 
-    {% if Weather %}
+{% if Weather %}
 <table>
     <tr>
         <td>
-        <table border="0">
-            <tr><h5>Weather Details </h5></tr>
-            <tr class="rowdisplay">
-                <td style="width:90px">City</td>
-                <td style="width:90px">Clouds</td>
-                <td style="width:90px">Min Temp(C)</td>
-                <td style="width:90px">Max Temp(C)</td>
-                <td style="width:90px">Humidity</td>
-            </tr>
-            <tr class="rowdisplay1">
-                <td style="width:90px; text-transform: capitalize;">{{ Travel.destination }}</td>
-                <td style="width:90px">{{ Weather.weather.0.description }}</td>
-                <td style="width:90px">{{ Weather.main.temp_min }}</td>
-                <td style="width:90px">{{ Weather.main.temp_max }}</td>
-                <td style="width:90px">{{ Weather.main.humidity }}</td>
-            </tr>
-        </table>
+            <table border="0">
+                <tr><h5>Weather Details </h5></tr>
+                <tr class="rowdisplay">
+                    <td style="width:90px">City</td>
+                    <td style="width:90px">Clouds</td>
+                    <td style="width:90px">Min Temp(C)</td>
+                    <td style="width:90px">Max Temp(C)</td>
+                    <td style="width:90px">Humidity</td>
+                </tr>
+                <tr class="rowdisplay1">
+                    <td style="width:90px; text-transform: capitalize;">{{ Travel.destination }}</td>
+                    <td style="width:90px">{{ Weather.weather.0.description }}</td>
+                    <td style="width:90px">{{ Weather.main.temp_min }}</td>
+                    <td style="width:90px">{{ Weather.main.temp_max }}</td>
+                    <td style="width:90px">{{ Weather.main.humidity }}</td>
+                </tr>
+            </table>
         </td>
-    {% endif %}
+        {% endif %}
 
-    {% if Covid %}
+        {% if Covid %}
         <td>
-        <table border="0">
-            <tr><h6>Covid-19 Data </h6></tr>
-            <tr class="rowdisplay">
-                <td style="width:90px">Country</td>
-                <td style="width:90px">New Cases</td>
-                <td style="width:90px">Active Cases</td>
-                <td style="width:90px">Critical</td>
-                <td style="width:90px">Recovered</td>
-                <td style="width:90px">Total Cases</td>
-                <td style="width:90px">Total Deaths</td>
-            </tr>
-            <tr class="rowdisplay1">
-                <td style="width:90px">{{ Covid.response.0.country }}</td>
-                <td style="width:90px">{{ Covid.response.0.cases.new }}</td>
-                <td style="width:90px">{{ Covid.response.0.cases.active }}</td>
-                <td style="width:90px">{{ Covid.response.0.cases.critical }}</td>
-                <td style="width:90px">{{ Covid.response.0.cases.recovered }}</td>
-                <td style="width:90px">{{ Covid.response.0.cases.total }}</td>
-                <td style="width:90px">{{ Covid.response.0.deaths.total }}</td>
-            </tr>
-        </table>
-    </td>
+            <table border="0">
+                <tr><h6>Covid-19 Data </h6></tr>
+                <tr class="rowdisplay">
+                    <td style="width:90px">Country</td>
+                    <td style="width:90px">New Cases</td>
+                    <td style="width:90px">Active Cases</td>
+                    <td style="width:90px">Critical</td>
+                    <td style="width:90px">Recovered</td>
+                    <td style="width:90px">Total Cases</td>
+                    <td style="width:90px">Total Deaths</td>
+                </tr>
+                <tr class="rowdisplay1">
+                    <td style="width:90px">{{ Covid.response.0.country }}</td>
+                    <td style="width:90px">{{ Covid.response.0.cases.new }}</td>
+                    <td style="width:90px">{{ Covid.response.0.cases.active }}</td>
+                    <td style="width:90px">{{ Covid.response.0.cases.critical }}</td>
+                    <td style="width:90px">{{ Covid.response.0.cases.recovered }}</td>
+                    <td style="width:90px">{{ Covid.response.0.cases.total }}</td>
+                    <td style="width:90px">{{ Covid.response.0.deaths.total }}</td>
+                </tr>
+            </table>
+        </td>
     </tr>
 </table>
 
 
-<table> <tr><td align="center"><a href="@">Contact Us</td></tr></table>
+<table>
+    <tr>
+        <td align="right"><a href="https://github.com/contactpunit" target="_blank"><img
+                src="/static/bootstrap/css/images/github.png" alt=Github"></td>
+        <td align="left"><a href="https://np.linkedin.com/in/punit-jain-25302823" target="_blank"><img
+                src="/static/bootstrap/css/images/linkedin.png" alt="Linkedin"></td>
+    </tr>
+</table>
 
 {% endif %}
 {% endblock %}
