@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Travel(models.Model):
+    """Travel model deals with fields related to travel app"""
     country = models.CharField(max_length=60)
     source = models.CharField(max_length=60)
     destination = models.CharField(max_length=60)
