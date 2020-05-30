@@ -18,6 +18,5 @@ class Covid(ConfigReaderMixin):
         result = self.get_covid_details()
         return result
 
-
 # c = Covid(source='pune', country='india', destination='delhi', travel_date='2020-06-01', num_passengers=2)
 # print(c.run())
