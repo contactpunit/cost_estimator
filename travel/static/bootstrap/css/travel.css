@@ -1,4 +1,4 @@
-:root {
+`:root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -50,10 +50,9 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
-  background-image: url('images/.jpg');
-  background-repeat: no-repeat;
+  background-color: #EDF8FB;
   background-size: cover;
+  text-transform: capitalize;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -69,6 +68,7 @@ hr {
 h1 {
   margin-top:0.5rem;
   text-align:center;
+  color:#17CBA8;
 }
 
 h2 {
@@ -76,10 +76,62 @@ h2 {
   text-align:center;
  }
 
-h3, h4, h5, h6 {
+h4 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  text-align:center;
 }
+
+h5{
+    text-align:center;
+    color: #666F50;
+    background-color: #E5F0C9;
+    font-size: 1rem;
+    animation: blinker 4s linear infinite;
+    font-family: sans-serif;
+}
+@keyframes blinker
+{
+      50% { opacity: 0; }
+}
+
+h6{
+text-align:center;
+color: #EA6B13;
+background-color: #ECD2C0;
+font-size: 1.0rem;
+animation: blinker 3.5s linear infinite;
+font-family: sans-serif;
+}
+
+@keyframes blinker
+{
+      50% { opacity: 0; }
+}
+
+
+.rowdisplay {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: black;
+  font-style: italic;
+  font-size: .85rem;
+  width=100px;
+  vertical-align: baseline;
+  margin:0;
+}
+
+.rowdisplay1 {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: black;
+  font-style: normal;
+  font-size: .8rem;
+  width=100px;
+  vertical-align: baseline;
+  margin: 0;
+}
+
 
 p {
   margin-top: 0;
@@ -102,10 +154,9 @@ caption {
 
 th {
   text-align: left;
-  color: #17a2b8;
-  background-color: #6c757d;
+  color: white;
+  background-color: #62A4E7;
   padding: 6px;
-
 }
 
 td {
@@ -117,14 +168,14 @@ button,
 [type="reset"],
 [type="submit"] {
   border-radius: 12px;
-  background-color: #ADD8E6; /* Gray */
+  background-color: #62A4E7; /*  blue */
   border: none;
-  color: black;
-  padding: 15px 32px;
+  color: white;
+  padding: 10px 28px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   font-weight:bold;
   margin: 4px 2px;
   cursor: pointer;
@@ -157,3 +208,5 @@ button,
 select {
   text-transform: none;
 }
+
+`

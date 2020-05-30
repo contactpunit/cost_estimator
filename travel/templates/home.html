@@ -8,9 +8,6 @@
 
 <table>
     {% if Travel %}
-    <thead>
-    <tr>
-    <tr> <h1>Travel Details </h1></tr>
     <tr>
         <th>From</th>
         <th>To</th>
@@ -21,10 +18,7 @@
         <th>Price per Passenger</th>
         <th>Passengers</th>
         <th>Total Price</th>
-
     </tr>
-    </thead>
-    <tbody>
     <!-- for class based views rename this queryset to quote_list -->
     <tr>
         <td>{{ Travel.source }}</td>
@@ -36,76 +30,67 @@
         <td>{{ Travel.MinPrice }}</td>
         <td>{{ Travel.num_passengers }}</td>
         <td>{{ Travel.total_price }}</td>
-
-
     </tr>
-    </tbody>
 </table>
 {% endif %}
 <br>
 <br>
-<table border="1">
+
     {% if Weather %}
-    <thead>
+<table>
     <tr>
-    <tr>
-        <th>Longitude</th>
-        <th>Latitude</th>
-        <th>Clouds</th>
-        <th>Min Temprature</th>
-        <th>Max Temprature</th>
-        <th>Pressure</th>
-        <th>Humidity</th>
-        <th>Wind Speed</th>
-        <th>SunRise</th>
-        <th>SunSet</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>{{ Weather.coord.lon }}</td>
-        <td>{{ Weather.coord.lat }}</td>
-        <td>{{ Weather.weather.0.description }}</td>
-        <td>{{ Weather.main.temp_min }}</td>
-        <td>{{ Weather.main.temp_max }}</td>
-        <td>{{ Weather.main.pressure }}</td>
-        <td>{{ Weather.main.humidity }}</td>
-        <td>{{ Weather.wind.speed }}</td>
-        <td>{{ Weather.sys.sunrise }}</td>
-        <td>{{ Weather.sys.sunset }}</td>
-    </tr>
-    </tbody>
+        <td>
+        <table border="0">
+            <tr><h5>Weather Details </h5></tr>
+            <tr class="rowdisplay">
+                <td style="width:90px">City</td>
+                <td style="width:90px">Clouds</td>
+                <td style="width:90px">Min Temp(C)</td>
+                <td style="width:90px">Max Temp(C)</td>
+                <td style="width:90px">Humidity</td>
+            </tr>
+            <tr class="rowdisplay1">
+                <td style="width:90px; text-transform: capitalize;">{{ Travel.destination }}</td>
+                <td style="width:90px">{{ Weather.weather.0.description }}</td>
+                <td style="width:90px">{{ Weather.main.temp_min }}</td>
+                <td style="width:90px">{{ Weather.main.temp_max }}</td>
+                <td style="width:90px">{{ Weather.main.humidity }}</td>
+            </tr>
+        </table>
+        </td>
     {% endif %}
-</table>
-<br>
-<br>
-<table border="1">
+
     {% if Covid %}
-    <thead>
-    <tr>
-    <tr>
-        <th>Country</th>
-        <th>New Cases</th>
-        <th>Active Cases</th>
-        <th>Critical</th>
-        <th>Recovered</th>
-        <th>Total Cases</th>
-        <th>Total Deaths</th>
-
+        <td>
+        <table border="0">
+            <tr><h6>Covid-19 Data </h6></tr>
+            <tr class="rowdisplay">
+                <td style="width:90px">Country</td>
+                <td style="width:90px">New Cases</td>
+                <td style="width:90px">Active Cases</td>
+                <td style="width:90px">Critical</td>
+                <td style="width:90px">Recovered</td>
+                <td style="width:90px">Total Cases</td>
+                <td style="width:90px">Total Deaths</td>
+            </tr>
+            <tr class="rowdisplay1">
+                <td style="width:90px">{{ Covid.response.0.country }}</td>
+                <td style="width:90px">{{ Covid.response.0.cases.new }}</td>
+                <td style="width:90px">{{ Covid.response.0.cases.active }}</td>
+                <td style="width:90px">{{ Covid.response.0.cases.critical }}</td>
+                <td style="width:90px">{{ Covid.response.0.cases.recovered }}</td>
+                <td style="width:90px">{{ Covid.response.0.cases.total }}</td>
+                <td style="width:90px">{{ Covid.response.0.deaths.total }}</td>
+            </tr>
+        </table>
+    </td>
     </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>{{ Covid.response.0.country }}</td>
-        <td>{{ Covid.response.0.cases.new }}</td>
-        <td>{{ Covid.response.0.cases.active }}</td>
-        <td>{{ Covid.response.0.cases.critical }}</td>
-        <td>{{ Covid.response.0.cases.recovered }}</td>
-        <td>{{ Covid.response.0.cases.total }}</td>
-        <td>{{ Covid.response.0.deaths.total }}</td>
-
-    </tr>
-    </tbody>
 </table>
+
+
+<table> <tr><td align="center"><a href="@">Contact Us</td></tr></table>
+
 {% endif %}
 {% endblock %}
+
+
