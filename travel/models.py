@@ -1,6 +1,14 @@
 from django.db import models
 
 
+class TimeStampedModel(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
 class Travel(models.Model):
     """Travel model deals with fields related to travel app"""
     country = models.CharField(max_length=60)
