@@ -17,5 +17,5 @@ class Weather(ConfigReaderMixin):
     def run(self):
         return self.get_weather_details()
 
-# w = Weather(country='India', destination='Pune')
-# w.get_weather_details()
+# w = Weather(country='in', destination='latur')
+# print(w.get_weather_details())

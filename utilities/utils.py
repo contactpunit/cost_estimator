@@ -2,6 +2,7 @@
 import requests
 import configparser
 import os
+import pycountry
 
 
 class ConfigReaderMixin:
@@ -91,3 +92,21 @@ def http_request(url=None, headers=None, params=None):
         print(f'Request timed out. Reason - {e}')
     except requests.exceptions.RequestException as e:
         print(f'Error while making request. Error - {e}')
+
+
+def find_country_name_from_code(country):
+    try:
+        result = ''
+        if len(country) > 3:
+            result = pycountry.countries.search_fuzzy(country)
+            return result[0].name
+        if len(country) == 2:
+            result = pycountry.countries.get(alpha_2=country)
+        elif len(country) == 3:
+            result = pycountry.countries.get(alpha_3=country)
+        if 'name' in result._fields:
+            return result.name
+        else:
+            return None
+    except LookupError:
+        return None
