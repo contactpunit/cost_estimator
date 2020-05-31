@@ -1,9 +1,10 @@
 from utilities.utils import ConfigReaderMixin, http_request
+from .utils import find_country_name_from_code
 
 
 class Covid(ConfigReaderMixin):
     def __init__(self, country=None, **kwargs):
-        self.country = country
+        self.country = find_country_name_from_code(country.upper())
         self.params = {'country': self.country}
         self.headers = {self.rapidapi_host_name: self.rapidapi_covid19_host_value,
                         self.rapidapi_key_name: self.rapidapi_key_value,
@@ -18,5 +19,5 @@ class Covid(ConfigReaderMixin):
         result = self.get_covid_details()
         return result
 
-# c = Covid(source='pune', country='india', destination='delhi', travel_date='2020-06-01', num_passengers=2)
+# c = Covid(country='in')
 # print(c.run())
