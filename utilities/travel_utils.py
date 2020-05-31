@@ -61,5 +61,5 @@ class Travel:
         return self.num_passengers * price
 
 # f = Travel(source='pnq', country='IN', destination='del', travel_date='2020-06-01', num_passengers=2)
-# r = f.find_itineraries()
+# r = f.run()
 # print(r)
